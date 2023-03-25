@@ -1,3 +1,7 @@
-<h1>Showing all the Articles</h1>
+<h1>Showing the Article</h1>
 <p><strong>Title: </strong><%= @article.title %></p>
 <p><strong>Description: </strong><%= @article.description %></p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> ||
+<%= link_to "Delete", article_path(@article), data: { "turbo-method": :delete, "turbo-confirm": "are you sure?" } %> ||
+<%= link_to 'Return to Listing', articles_path%>

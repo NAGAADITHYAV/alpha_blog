@@ -11,7 +11,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     if @article.save
       flash[:notice] = 'Article has been created sucessfully'
-      redirect_to article_path(@article)
+      redirect_to @article
     else
       render 'new'
     end
@@ -19,6 +19,26 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+  end
+
+  def update
+    @article = Article.find_by(id: params[:id])
+    if @article.update(article_params)
+      flash[:notice] = 'Article has been updated sucessfully'
+      redirect_to @article
+    else
+      render 'new'
+    end
+  end
+
+  def edit
+    @article = Article.find_by(id: params[:id])
+  end
+
+  def destroy
+    @article = Article.find_by(id: params[:id])
+    @article.destroy
+    redirect_to articles_path
   end
 
   private
